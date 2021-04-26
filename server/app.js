@@ -11,6 +11,14 @@ dotenv.config({ path: "./.env" });
 
 require("./db/connect.js");
 
+//parsing json
+
+app.use(express.json());
+
+//importig outsourced routes
+
+app.use(require("./router/auth"));
+
 //importing models
 
 const User = require("./model/userSchema");
@@ -24,27 +32,3 @@ app.listen(PORT, () => {
 	console.log(`server is running on port ${PORT}`);
 });
 
-//home page
-app.get("/", (req, res) => {
-	res.send("Home page");
-});
-
-//about page
-app.get("/about", (req, res) => {
-	res.send("about page");
-});
-
-//contact page
-app.get("/contact", (req, res) => {
-	res.send("contact page");
-});
-
-// login page
-app.get("/signin", (req, res) => {
-	res.send("login page");
-});
-
-//register page
-app.get("/signup", (req, res) => {
-	res.send("register page");
-});
