@@ -1,10 +1,12 @@
 import React from "react";
-
+import jquery from 'jquery';
+import Navbar from './components/Navbar';
 
 const App = () => {
 	return (
 		<>
-			<div>This is App</div>
+			<div>This App</div>
+			<Navbar/>
 		</>
 	);
 };
