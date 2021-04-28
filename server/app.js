@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-
+const cors = require("cors");
 const express = require("express");
 const app = express();
 
@@ -19,6 +19,8 @@ app.use(express.json());
 
 app.use(require("./router/auth"));
 
+app.use(cors());
+
 //importing models
 
 const User = require("./model/userSchema");
@@ -31,4 +33,3 @@ PORT = process.env.PORT;
 app.listen(PORT, () => {
 	console.log(`server is running on port ${PORT}`);
 });
-

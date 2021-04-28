@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const authenticate = require("../middleware/authenticate");
 const User = require("../model/userSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -69,10 +70,10 @@ router.post("/signin", async (req, res) => {
 			console.log(token);
 
 			//cookies settig
-			res.cookie('jwtoken', token, {
-				expires:new Date(Date.now()+25892000000),
-				httpOnly:true
-			})
+			res.cookie("jwtoken", token, {
+				expires: new Date(Date.now() + 25892000000),
+				httpOnly: true,
+			});
 
 			if (!isMatch) {
 				res.status(400).json({ error: "invalid credentials" });
@@ -87,6 +88,11 @@ router.post("/signin", async (req, res) => {
 		console.log(err);
 	}
 	// console.log(userLogin);
+});
+
+router.get("/about", authenticate, (req, res) => {
+	console.log("This is about");
+	res.send(req.rootUser);
 });
 
 module.exports = router;
