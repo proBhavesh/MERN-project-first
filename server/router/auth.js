@@ -90,7 +90,8 @@ router.post("/signin", async (req, res) => {
 	// console.log(userLogin);
 });
 
-router.get("/about", authenticate, (req, res) => {
+router.get("/about",authenticate, (req, res) => {
+	// console.log(req.cookies.jwtoken);
 	console.log("This is about");
 	res.send(req.rootUser);
 });

@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
-const cors = require("cors");
 const express = require("express");
+const cookies = require("cookie-parser");
 const app = express();
 
 //making passwords secure using .env
@@ -13,13 +13,13 @@ require("./db/connect.js");
 
 //parsing json
 
+app.use(cookies());
+
 app.use(express.json());
 
 //importig outsourced routes
 
 app.use(require("./router/auth"));
-
-app.use(cors());
 
 //importing models
 
